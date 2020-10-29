@@ -4,7 +4,8 @@ import lombok.Data;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.math.BigInteger;
+
+
 
 @Data
 @Entity
@@ -14,7 +15,7 @@ public class ProfessorEntity implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "CD_MATRICULA")
-    private BigInteger cdMatricula;
+    private Integer cdMatricula;
 
     @Column(name = "NM_PROFESSOR")
     private String nmProfessor;

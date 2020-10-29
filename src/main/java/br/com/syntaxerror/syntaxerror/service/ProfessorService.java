@@ -13,7 +13,7 @@ public class ProfessorService {
     ProfessorRepository professorRepository;
 
 
-    public ProfessorEntity buscarProfessorMatricula(BigInteger matricula){
+    public ProfessorEntity buscarProfessorMatricula(Integer matricula){
         return professorRepository.getOne(matricula);
     }
 

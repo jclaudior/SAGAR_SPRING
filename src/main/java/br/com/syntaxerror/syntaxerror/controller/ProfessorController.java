@@ -20,7 +20,7 @@ public class ProfessorController {
 
 
     @GetMapping("/professor/{codigo}")
-    public ProfessorEntity buscarProfessorPorMatricula(@PathVariable("codigo") BigInteger matricula){
+    public ProfessorEntity buscarProfessorPorMatricula(@PathVariable("codigo") Integer matricula){
         return professorService.buscarProfessorMatricula(matricula);
     }
 
