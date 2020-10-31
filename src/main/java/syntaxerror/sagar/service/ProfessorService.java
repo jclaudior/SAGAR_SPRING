@@ -46,7 +46,7 @@ public class ProfessorService {
     public ResponseEntity alterarProfessor (ProfessorEntity professor){
         ResultData resultData = null;
         try {
-            ProfessorEntity professorAlterar = professorRepository.getOne(professor.getCdMatricula());
+            ProfessorEntity professorAlterar = professorRepository.findById(professor.getCdMatricula()).orElse(null);
             if(professorAlterar == null){
                 resultData = new ResultData(HttpStatus.NOT_FOUND.value(), "Professor não encontrado para alteração!");
                 return ResponseEntity.status(HttpStatus.NOT_FOUND).body(resultData);
