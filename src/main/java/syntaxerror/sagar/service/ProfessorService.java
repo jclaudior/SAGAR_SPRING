@@ -17,7 +17,7 @@ public class ProfessorService {
     public ResponseEntity buscarProfessorPorMatricula(Integer matricula){
         ResultData resultData = null;
         try {
-            ProfessorEntity professorEntity = professorRepository.getOne(matricula);
+            ProfessorEntity professorEntity = professorRepository.findById(matricula).orElse(null);
             if(professorEntity == null) {
                 resultData = new ResultData(HttpStatus.NOT_FOUND.value(), "Professor não encontrado!");
                 return ResponseEntity.status(HttpStatus.NOT_FOUND).body(resultData);
@@ -61,7 +61,6 @@ public class ProfessorService {
 
             resultData = new ResultData(HttpStatus.OK.value(), "Professor alterado com sucesso!", professorAlterar);
             return ResponseEntity.status(HttpStatus.OK).body(resultData);
-
         }catch (Exception e){
             resultData = new ResultData(HttpStatus.INTERNAL_SERVER_ERROR.value(), "Erro ao alterar professor! " + e.getMessage());
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(resultData);
