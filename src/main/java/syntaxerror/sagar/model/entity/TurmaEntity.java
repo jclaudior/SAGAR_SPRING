@@ -28,3 +28,5 @@ public class TurmaEntity {
     private Boolean stTurma;
 
 }
+
+// ..
