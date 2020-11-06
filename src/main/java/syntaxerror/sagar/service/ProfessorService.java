@@ -34,6 +34,11 @@ public class ProfessorService {
     public ResponseEntity inserirProfessor (ProfessorEntity professor){
         ResultData resultData = null;
         try {
+            ProfessorEntity professorVerifica = professorRepository.findById(professor.getCdMatricula()).orElse(null);
+            if(professorVerifica != null){
+                resultData = new ResultData(HttpStatus.CONFLICT.value(), "Professor com esta matricula ja cadastrado na base de dados!",professorVerifica);
+                return ResponseEntity.status(HttpStatus.CONFLICT).body(resultData);
+            }
             professorRepository.save(professor);
             resultData = new ResultData(HttpStatus.CREATED.value(), "Professor cadastrado com sucesso!", professor);
             return ResponseEntity.status(HttpStatus.CREATED).body(resultData);

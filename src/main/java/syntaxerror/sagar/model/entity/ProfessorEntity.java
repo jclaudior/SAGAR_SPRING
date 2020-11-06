@@ -14,7 +14,7 @@ import javax.persistence.*;
 public class ProfessorEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    //@GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="CD_MATRICULA")
     private Integer cdMatricula;
 
