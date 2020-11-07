@@ -24,8 +24,8 @@ public class DisciplinaService {
                 resultdata = new ResultData(HttpStatus.NOT_FOUND.value(), "Disciplina não encontrada!");
                 return ResponseEntity.status(HttpStatus.NOT_FOUND).body(resultdata);
             } else {
-                resultdata = new ResultData(HttpStatus.FOUND.value(),  "Disciplina consultada com sucesso!", disciplinaEntity);
-                return ResponseEntity.status(HttpStatus.FOUND).body(resultdata);
+                resultdata = new ResultData(HttpStatus.OK.value(),  "Disciplina consultada com sucesso!", disciplinaEntity);
+                return ResponseEntity.status(HttpStatus.OK).body(resultdata);
             }
         }catch (Exception e){
             resultdata = new ResultData(HttpStatus.INTERNAL_SERVER_ERROR.value(),  "Erro ao consultar Disciplina! " + e.getMessage());
