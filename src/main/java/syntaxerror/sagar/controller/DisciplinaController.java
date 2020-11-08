@@ -18,6 +18,11 @@ public class DisciplinaController {
         return disciplinaService.buscarDisciplinaPorCodigo(codigo);
     }
 
+    @GetMapping("/disciplina")
+    public ResponseEntity listarDisciplinaPorCurso(){
+        return disciplinaService.listarDisciplina();
+    }
+
     @PostMapping("/disciplina")
     public ResponseEntity inserirDisciplina(@RequestBody DisciplinaEntity disciplina){
         return disciplinaService.inserirDisciplina(disciplina);

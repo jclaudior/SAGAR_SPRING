@@ -10,6 +10,7 @@ import syntaxerror.sagar.model.entity.DisciplinaEntity;
 import syntaxerror.sagar.repository.DisciplinaRepository;
 
 import javax.xml.transform.Result;
+import java.util.List;
 
 @Service
 public class DisciplinaService {
@@ -29,6 +30,18 @@ public class DisciplinaService {
             }
         }catch (Exception e){
             resultdata = new ResultData(HttpStatus.INTERNAL_SERVER_ERROR.value(),  "Erro ao consultar Disciplina! " + e.getMessage());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(resultdata);
+        }
+    }
+
+    public ResponseEntity listarDisciplina (){
+        ResultData resultdata = null;
+        try{
+            List<DisciplinaEntity> disciplinas = disciplinaRepository.findAll();
+            resultdata = new ResultData(HttpStatus.OK.value(),  "Disciplina listada com sucesso!", disciplinas);
+            return ResponseEntity.status(HttpStatus.OK).body(resultdata);
+        }catch (Exception e){
+            resultdata = new ResultData(HttpStatus.INTERNAL_SERVER_ERROR.value(),  "Erro ao listar Disciplina! " + e.getMessage());
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(resultdata);
         }
     }
