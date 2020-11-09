@@ -23,7 +23,7 @@ public class TurmaEntity {
 
     @ManyToOne
     @JoinColumn(name="CD_CURSO")
-    private CursoEntity Curso;
+    private CursoEntity curso;
 
     @Column(name = "DS_PERIODO")
     private String dsPeriodo;
