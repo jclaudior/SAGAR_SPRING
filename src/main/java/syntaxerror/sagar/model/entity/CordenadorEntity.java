@@ -4,33 +4,28 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name="TB_PROFESSOR")
-public class ProfessorEntity {
-
+@Table(name="TB_CORDENADOR")
+public class CordenadorEntity {
     @Id
     //@GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="CD_MATRICULA")
     private Integer cdMatricula;
 
-    @Column(name="NM_PROFESSOR")
-    private String nmProfessor;
-
-    @Column(name = "DS_EMAIL")
-    private String dsEmail;
-
-    @Column(name = "DS_CELULAR")
-    private String dsCelular;
+    @Column(name="NM_CORDENADOR")
+    private String nmCordenador;
 
     @Column(name = "PW_ACESSO")
     private String pwAcesso;
 
-    @Column(name="ST_PROFESSOR", nullable = false)
-    private Boolean stProfessor = true;
-
+    @Column(name="ST_CORDENADOR", nullable = false)
+    private Boolean stCordenador = true;
 }

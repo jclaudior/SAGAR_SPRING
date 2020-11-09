@@ -24,7 +24,7 @@ public class TurmaEntity {
     @Column(name = "DS_PERIODO")
     private String dsPeriodo;
 
-    @Column(name="ST_TURMA")
-    private Boolean stTurma;
+    @Column(name="ST_TURMA", nullable = false)
+    private Boolean stTurma = true;
 
 }
