@@ -21,6 +21,10 @@ public class TurmaEntity {
     @Column(name="NM_TURMA")
     private String nmTurma;
 
+    @ManyToOne
+    @JoinColumn(name="CD_CURSO")
+    private CursoEntity Curso;
+
     @Column(name = "DS_PERIODO")
     private String dsPeriodo;
 
