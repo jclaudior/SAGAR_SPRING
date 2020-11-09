@@ -22,8 +22,8 @@ public class TurmaService {
                 resultData = new ResultData(HttpStatus.NOT_FOUND.value(), "Turma não encontrada!");
                 return ResponseEntity.status(HttpStatus.NOT_FOUND).body(resultData);
             }else{
-                resultData = new ResultData(HttpStatus.FOUND.value(), "Turma consultada com sucesso!", turmaEntity);
-                return ResponseEntity.status(HttpStatus.FOUND).body(resultData);
+                resultData = new ResultData(HttpStatus.OK.value(), "Turma consultada com sucesso!", turmaEntity);
+                return ResponseEntity.status(HttpStatus.OK).body(resultData);
             }
         }catch (Exception e){
             resultData = new ResultData(HttpStatus.INTERNAL_SERVER_ERROR.value(), "Erro ao consultar turma! " + e.getMessage());
