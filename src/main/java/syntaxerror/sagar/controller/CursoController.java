@@ -17,6 +17,11 @@ public class CursoController {
         return cursoService.buscarCursoPorCodigo(codigo);
     }
 
+    @GetMapping("/curso")
+    public ResponseEntity listarCurso(){
+        return cursoService.listarCursos();
+    }
+
     @PostMapping("/curso")
     public ResponseEntity inserirDisciplina(@RequestBody CursoEntity curso){
         return cursoService.inserirCurso(curso);

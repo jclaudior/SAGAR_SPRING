@@ -3,17 +3,29 @@ package syntaxerror.sagar.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.mail.SimpleMailMessage;
 import org.springframework.stereotype.Service;
 import syntaxerror.sagar.model.dto.ResultData;
 import syntaxerror.sagar.model.entity.CursoEntity;
-import syntaxerror.sagar.model.entity.ProfessorEntity;
 import syntaxerror.sagar.repository.CursoRepository;
+
+import java.util.List;
 
 @Service
 public class CursoService {
     @Autowired
     CursoRepository cursoRepository;
+
+    public ResponseEntity listarCursos (){
+        ResultData resultdata = null;
+        try{
+            List<CursoEntity> cursos = cursoRepository.findAll();
+            resultdata = new ResultData(HttpStatus.OK.value(),  "Curso listado com sucesso!", cursos);
+            return ResponseEntity.status(HttpStatus.OK).body(resultdata);
+        }catch (Exception e){
+            resultdata = new ResultData(HttpStatus.INTERNAL_SERVER_ERROR.value(),  "Erro ao listar Curso! " + e.getMessage());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(resultdata);
+        }
+    }
 
     public ResponseEntity buscarCursoPorCodigo(Integer codigo){
         ResultData resultData = null;
