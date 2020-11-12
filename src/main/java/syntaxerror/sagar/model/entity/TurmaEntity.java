@@ -14,7 +14,7 @@ import javax.persistence.*;
 public class TurmaEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    //@GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="CD_TURMA")
     private Integer cdTurma;
 
