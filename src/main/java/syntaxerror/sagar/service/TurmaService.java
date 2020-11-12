@@ -46,7 +46,7 @@ public class TurmaService {
     public ResponseEntity alterarTurma (TurmaEntity turma){
         ResultData resultData = null;
         try {
-            TurmaEntity turmaAlterar = turmaRepository.findById(turma.getCdCodigo()).orElse(null);
+            TurmaEntity turmaAlterar = turmaRepository.findById(turma.getCdTurma()).orElse(null);
             if(turmaAlterar == null){
                 resultData = new ResultData(HttpStatus.NOT_FOUND.value(), "Turma não encontrado para alteração!");
                 return ResponseEntity.status(HttpStatus.NOT_FOUND).body(resultData);

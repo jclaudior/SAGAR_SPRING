@@ -15,8 +15,8 @@ public class TurmaEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="CD_CODIGO")
-    private Integer cdCodigo;
+    @Column(name="CD_TURMA")
+    private Integer cdTurma;
 
     @Column(name="NM_TURMA")
     private String nmTurma;

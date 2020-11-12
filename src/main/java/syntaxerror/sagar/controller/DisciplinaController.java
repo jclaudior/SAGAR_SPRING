@@ -14,12 +14,12 @@ public class DisciplinaController {
     DisciplinaService disciplinaService;
 
     @GetMapping("/disciplina/{codigo}")
-    public ResponseEntity buscarDisciplinaPorCurso(@PathVariable("codigo") Integer codigo){
+    public ResponseEntity buscarDisciplinaPorCodigo(@PathVariable("codigo") Integer codigo){
         return disciplinaService.buscarDisciplinaPorCodigo(codigo);
     }
 
     @GetMapping("/disciplina")
-    public ResponseEntity listarDisciplinaPorCurso(){
+    public ResponseEntity listarDisciplina(){
         return disciplinaService.listarDisciplina();
     }
 
