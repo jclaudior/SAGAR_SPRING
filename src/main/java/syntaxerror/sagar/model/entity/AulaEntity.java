@@ -45,7 +45,7 @@ public class AulaEntity {
     @Column(name = "HR_INICIO")
     private String hrInicio;
 
-    @Column(name="hrTermino")
+    @Column(name="HR_TERMINO")
     private String hrTermino;
 
     @Column(name="DS_AULA")
