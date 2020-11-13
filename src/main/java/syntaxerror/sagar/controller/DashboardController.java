@@ -19,8 +19,13 @@ public class DashboardController {
     @Autowired
     DashboardService dashboardService;
 
-    @GetMapping("/dashboard/{dtInicial}/{dtFinal}")
+    @GetMapping("/dashboard/aula/top/{dtInicial}/{dtFinal}")
     public DashboardDTO topAcessoAula(@PathVariable("dtInicial") @DateTimeFormat(pattern = "yyyy-MM-dd") Date dtInicial, @PathVariable("dtFinal") @DateTimeFormat(pattern = "yyyy-MM-dd") Date dtFinal){
         return dashboardService.topAcessoAula(dtInicial,dtFinal);
+    }
+
+    @GetMapping("/dashboard/aula/low/{dtInicial}/{dtFinal}")
+    public DashboardDTO lowAcessoAula(@PathVariable("dtInicial") @DateTimeFormat(pattern = "yyyy-MM-dd") Date dtInicial, @PathVariable("dtFinal") @DateTimeFormat(pattern = "yyyy-MM-dd") Date dtFinal){
+        return dashboardService.lowAcessoAula(dtInicial,dtFinal);
     }
 }

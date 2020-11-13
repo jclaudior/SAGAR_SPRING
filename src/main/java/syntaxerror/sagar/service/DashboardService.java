@@ -10,6 +10,7 @@ import syntaxerror.sagar.repository.AulaRepository;
 import syntaxerror.sagar.repository.DashboardRepository;
 
 
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 @Service
@@ -44,21 +45,43 @@ public class DashboardService {
             "#ff0000"));
 
     public DashboardDTO topAcessoAula(Date dtInicial, Date dtFinal){
-        Pageable firstPageWithTwoElements =  PageRequest.of(0, 6);
-        List<AulaEntity> aulasMaisAcessos = dashboardRepository.findByDtAulaBetweenOrderByQtAlunoDesc(dtInicial, dtFinal, firstPageWithTwoElements);
+
         List<String> colors = new ArrayList<>();;
         List<Integer> values = new ArrayList<>();
         List<String> labels = new ArrayList<>();;
-        for (AulaEntity aula: aulasMaisAcessos) {
-            values.add(aula.getQtAluno());
-            labels.add(aula.getDisciplina().getNmDisciplina());
+
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        List<Object[]> listEntity = (List<Object[]>) dashboardRepository.findAllTopAcessoAula(dateFormat.format(dtInicial), dateFormat.format(dtFinal));
+
+        for (Object[] dash: listEntity) {
+            labels.add((String) dash[0]);
+            values.add(Integer.parseInt(dash[1].toString()));
             Random rand = new Random();
             colors.add(colorsList.get(rand.nextInt(colorsList.size())));
         }
 
+        DashboardDTO dashboardDTO = new DashboardDTO(colors, values, labels, "Quantidade de Alunos Conectados");
+        return dashboardDTO;
+    }
+
+
+    public DashboardDTO lowAcessoAula(Date dtInicial, Date dtFinal){
+
+        List<String> colors = new ArrayList<>();;
+        List<Integer> values = new ArrayList<>();
+        List<String> labels = new ArrayList<>();;
+
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        List<Object[]> listEntity = (List<Object[]>) dashboardRepository.findAllLowAcessoAula(dateFormat.format(dtInicial), dateFormat.format(dtFinal));
+
+        for (Object[] dash: listEntity) {
+            labels.add((String) dash[0]);
+            values.add(Integer.parseInt(dash[1].toString()));
+            Random rand = new Random();
+            colors.add(colorsList.get(rand.nextInt(colorsList.size())));
+        }
 
         DashboardDTO dashboardDTO = new DashboardDTO(colors, values, labels, "Quantidade de Alunos Conectados");
-
         return dashboardDTO;
     }
 
