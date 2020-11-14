@@ -34,4 +34,14 @@ public interface DashboardRepository extends PagingAndSortingRepository<AulaEnti
                         "LIMIT 5;",
                 nativeQuery = true)
         Collection<Object[]> findAllLowAcessoAula(@Param("dtInicio") String dtInicial, @Param("dtFim") String dtFim);
+
+        @Query(
+                value = "SELECT TB_AULA.QT_ALUNO, TB_DISCIPLINA.NM_DISCIPLINA, TB_AULA.DT_AULA FROM TB_AULA\n" +
+                        "JOIN TB_DISCIPLINA ON TB_AULA.CD_DISCIPLINA = TB_DISCIPLINA.ID_DISCIPLINA\n" +
+                        "WHERE DT_AULA BETWEEN :dtInicio AND :dtFim AND TB_DISCIPLINA.NM_DISCIPLINA = :nmDisciplina\n" +
+                        "ORDER BY TB_AULA.DT_AULA;", nativeQuery = true)
+        Collection<Object []> findAccessOfDisciplinaInEachClass
+                (@Param("dtInicio") String dtInicio,
+                 @Param("dtFim") String dtFim,
+                 @Param("nmDisciplina") String disciplina);
 }
