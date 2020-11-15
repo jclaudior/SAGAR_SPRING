@@ -6,6 +6,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import syntaxerror.sagar.model.dto.DashboardDTO;
 import syntaxerror.sagar.model.entity.AulaEntity;
+import syntaxerror.sagar.model.entity.DisciplinaEntity;
 import syntaxerror.sagar.repository.AulaRepository;
 import syntaxerror.sagar.repository.DashboardRepository;
 
@@ -76,6 +77,25 @@ public class DashboardService {
 
         for (Object[] dash: listEntity) {
             labels.add((String) dash[0]);
+            values.add(Integer.parseInt(dash[1].toString()));
+            Random rand = new Random();
+            colors.add(colorsList.get(rand.nextInt(colorsList.size())));
+        }
+
+        DashboardDTO dashboardDTO = new DashboardDTO(colors, values, labels, "Quantidade de Alunos Conectados");
+        return dashboardDTO;
+    }
+
+    public DashboardDTO qtAcessoAulaDiciplinaPorData (Date dtInicial, Date dtFinal, String disciplina){
+        List<String> colors = new ArrayList<>();;
+        List<Integer> values = new ArrayList<>();
+        List<String> labels = new ArrayList<>();;
+
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        List<Object[]> listEntity = (List<Object[]>) dashboardRepository.findAccessOfDisciplinaInEachClass(dateFormat.format(dtInicial), dateFormat.format(dtFinal), disciplina);
+        SimpleDateFormat dateFormatBr = new SimpleDateFormat("dd/MM/yyyy");
+        for (Object[] dash: listEntity) {
+            labels.add(dateFormatBr.format((Date) dash[0]));
             values.add(Integer.parseInt(dash[1].toString()));
             Random rand = new Random();
             colors.add(colorsList.get(rand.nextInt(colorsList.size())));

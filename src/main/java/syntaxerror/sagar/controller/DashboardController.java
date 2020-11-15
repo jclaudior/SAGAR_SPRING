@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import syntaxerror.sagar.model.dto.DashboardDTO;
 import syntaxerror.sagar.model.entity.AulaEntity;
+import syntaxerror.sagar.model.entity.DisciplinaEntity;
 import syntaxerror.sagar.service.DashboardService;
 
 import java.util.Date;
@@ -27,5 +28,12 @@ public class DashboardController {
     @GetMapping("/dashboard/aula/low/{dtInicial}/{dtFinal}")
     public DashboardDTO lowAcessoAula(@PathVariable("dtInicial") @DateTimeFormat(pattern = "yyyy-MM-dd") Date dtInicial, @PathVariable("dtFinal") @DateTimeFormat(pattern = "yyyy-MM-dd") Date dtFinal){
         return dashboardService.lowAcessoAula(dtInicial,dtFinal);
+    }
+
+    @GetMapping("/dashboard/aula/{dtInicial}/{dtFinal}/{disciplina}")
+    public DashboardDTO qtAcessoAulaDiciplinaPorData (@PathVariable("dtInicial") @DateTimeFormat(pattern = "yyyy-MM-dd") Date dtInicial,
+                                                      @PathVariable("dtFinal") @DateTimeFormat(pattern = "yyyy-MM-dd") Date dtFinal,
+                                                      @PathVariable("disciplina")  String disciplina){
+        return dashboardService.qtAcessoAulaDiciplinaPorData(dtInicial, dtFinal, disciplina);
     }
 }
