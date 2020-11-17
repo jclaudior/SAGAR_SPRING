@@ -100,7 +100,6 @@ public class DashboardService {
             Random rand = new Random();
             colors.add(colorsList.get(rand.nextInt(colorsList.size())));
         }
-
         DashboardDTO dashboardDTO = new DashboardDTO(colors, values, labels, "Quantidade de Alunos Conectados");
         return dashboardDTO;
     }

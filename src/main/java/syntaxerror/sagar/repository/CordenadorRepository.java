@@ -4,6 +4,9 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 import syntaxerror.sagar.model.entity.CordenadorEntity;
 
+import java.util.List;
+
 @Repository
 public interface CordenadorRepository extends JpaRepository<CordenadorEntity, Integer> {
+    List<CordenadorEntity> findByCdMatriculaAndPwAcesso (Integer matricula, String senha);
 }
