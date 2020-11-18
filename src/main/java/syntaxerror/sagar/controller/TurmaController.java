@@ -18,6 +18,11 @@ public class TurmaController {
         return turmaService.buscarTurmaPorCodigo(codigo);
     }
 
+    @GetMapping("/turma")
+    public ResponseEntity listarTurmas(){
+        return turmaService.listarTurma();
+    }
+
     @PostMapping("/turma")
     public ResponseEntity inserirTurma(@RequestBody TurmaEntity turma){
         return turmaService.inserirTurma(turma);

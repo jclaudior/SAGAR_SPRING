@@ -5,14 +5,29 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import syntaxerror.sagar.model.dto.ResultData;
+import syntaxerror.sagar.model.entity.CursoEntity;
 import syntaxerror.sagar.model.entity.TurmaEntity;
 import syntaxerror.sagar.repository.TurmaRepository;
+
+import java.util.List;
 
 
 @Service
 public class TurmaService {
     @Autowired
     TurmaRepository turmaRepository;
+
+    public ResponseEntity listarTurma (){
+        ResultData resultdata = null;
+        try{
+            List<TurmaEntity> turmas = turmaRepository.findAll();
+            resultdata = new ResultData(HttpStatus.OK.value(),  "Turma listado com sucesso!", turmas);
+            return ResponseEntity.status(HttpStatus.OK).body(resultdata);
+        }catch (Exception e){
+            resultdata = new ResultData(HttpStatus.INTERNAL_SERVER_ERROR.value(),  "Erro ao listar Turma! " + e.getMessage());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(resultdata);
+        }
+    }
 
     public ResponseEntity buscarTurmaPorCodigo(Integer codigo){
         ResultData resultData = null;
