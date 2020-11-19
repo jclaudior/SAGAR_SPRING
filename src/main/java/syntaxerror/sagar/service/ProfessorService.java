@@ -48,8 +48,8 @@ public class ProfessorService {
             professorRepository.save(professor);
             SimpleMailMessage email = new SimpleMailMessage();
             email.setTo(professor.getDsEmail());
-            email.setSubject("Senha de Acesso SAGAR");
-            email.setText("Esta é sua senha de acesso ao SAGAR : "+professor.getPwAcesso());
+            email.setSubject("Senha e Matricula de Acesso SAGAR");
+            email.setText("Matricula: "+professor.getCdMatricula() +" Senha: "+professor.getPwAcesso());
             mailSender.send(email);
             resultData = new ResultData(HttpStatus.CREATED.value(), "Professor cadastrado com sucesso!", professor);
             return ResponseEntity.status(HttpStatus.CREATED).body(resultData);
