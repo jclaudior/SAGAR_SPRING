@@ -72,6 +72,7 @@ public class CursoService {
             cursoAlterar.setNmCurso(curso.getNmCurso());
             cursoAlterar.setCordenadorEntity(curso.getCordenadorEntity());
             cursoAlterar.setDisciplinas(curso.getDisciplinas());
+            cursoAlterar.setStCurso(curso.getStCurso());
 
             cursoRepository.save(cursoAlterar);
 
