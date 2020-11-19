@@ -8,6 +8,7 @@ import syntaxerror.sagar.model.dto.ResultData;
 import syntaxerror.sagar.model.entity.AulaEntity;
 import syntaxerror.sagar.repository.AulaRepository;
 
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -40,6 +41,18 @@ public class AulaService {
             return ResponseEntity.status(HttpStatus.OK).body(resultdata);
         }catch (Exception e){
             resultdata = new ResultData(HttpStatus.INTERNAL_SERVER_ERROR.value(),  "Erro ao listar Aula! " + e.getMessage());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(resultdata);
+        }
+    }
+
+    public ResponseEntity buscarAulaPorFiltros ( Integer cdCurso, Integer cdTurma, Integer idDisciplina, Date dtAula){
+        ResultData resultdata = null;
+        try{
+            List<AulaEntity> aulas = aulaRepository.findByTurmaCursoCdCursoAndTurmaCdTurmaAndDisciplinaIdDisciplinaAndDtAula(cdCurso, cdTurma, idDisciplina, dtAula);
+            resultdata = new ResultData(HttpStatus.OK.value(),  "Busca Aula por curso realizada com sucesso!", aulas);
+            return ResponseEntity.status(HttpStatus.OK).body(resultdata);
+        }catch (Exception e){
+            resultdata = new ResultData(HttpStatus.INTERNAL_SERVER_ERROR.value(),  "Erro Busca Aula por curso! " + e.getMessage());
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(resultdata);
         }
     }

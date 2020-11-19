@@ -11,4 +11,6 @@ import java.util.List;
 @Repository
 public interface AulaRepository extends JpaRepository<AulaEntity, Integer> {
 
+    List<AulaEntity> findByTurmaCursoCdCursoAndTurmaCdTurmaAndDisciplinaIdDisciplinaAndDtAula (Integer cdCurso, Integer cdTurma, Integer idDisciplina, Date dtAula);
+
 }
